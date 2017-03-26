@@ -59,18 +59,20 @@ public class Main {
         Region.click();
 
         InitialiseDatabase ();
-        for (int i = 0; i < Variables.NofPages; i ++) {
+        for (int i = 0; i < Variables.NofPages/* !!!! */; i ++) {
             ExtractCurrentTable (i * Variables.EntriesinTable);
             GotoNextPage ();
+
             System.out.println ("Waiting started!");
             driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
             try {
-                driver.findElement(By.xpath("randomwordramdomword123"));
+                driver.findElement(By.xpath("randomwordramdomword123"));//!!!!!
             } catch (Exception e) {
 
             }
             System.out.println ("Waiting completed!");
         }
+        DBSaver output = new DBSaver(Head, Database, "Maule", in);
 
         in.read();
         //Close browser
@@ -99,6 +101,7 @@ public class Main {
         System.out.println ("Waiting completed!");
 
         Head = new ArrayList<String>();
+        Database = new String [Variables.TableWidth][Variables.MaxNofEntries];
 
         int ind;
         while (true) {
@@ -121,18 +124,24 @@ public class Main {
     }
 
     private static void ExtractCurrentTable (int FirstInd) {
-        Database = new String [Head.size()][10000];
-
         //MakeWait (Variables.TableContXPath, "Xpath");
         for (int i = 0; i < Variables.EntriesinTable; i ++) {
             for (int j = 0; j < Head.size(); j ++) {
-                WebElement CurCell = MakeWait(Variables.TableContXpath + "/tr[" + (i+1) + "]/td[" + (j+1) + "]", "Xpath");
-                Database[j][FirstInd + i] = CurCell.getText();
-                System.out.print (Database[j][FirstInd + i]);
-                System.out.print ("       ");
+                try {
+                    WebElement CurCell = driver.findElement(By.xpath(Variables.TableContXpath + "/tr[" + (i+1) + "]/td[" + (j+1) + "]"));
+                    Database[j][FirstInd + i] = CurCell.getText();
+                    System.out.print (Database[j][FirstInd + i]);
+                    System.out.print ("       ");
+                } catch (Exception e) {
+                    return ;
+                }
             }
             System.out.println ();
         }
+    }
+
+    private static void ExtractTheLastTable (int FirstInd) {
+
     }
 
     private static WebElement MakeWait (String Loc, String type) {
@@ -150,7 +159,7 @@ public class Main {
 
                 break;
             } catch (Exception e) {
-                System.out.println (Loc);
+                //System.out.println (Loc);
             }
         }
 

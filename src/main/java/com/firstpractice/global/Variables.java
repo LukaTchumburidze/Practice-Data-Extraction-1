@@ -17,4 +17,6 @@ public class Variables {
     public static final String TableContXpath = "//*[@id=\"DAA_Table_Container\"]/div/div[1]/table/tbody";
     public static final String NextPageXpath = "//*[@id=\"DAA_Table_Container\"]/div/div[2]/div[2]/div/div/span";
     public static final int EntriesinTable = 10;
+    public static final int MaxNofEntries = 5000;
+    public static final int TableWidth = 10;
 }
