@@ -44,7 +44,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         //Sets variable to local chromedriver's path
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
         //Initialise new chromedriver and wait
         driver = new ChromeDriver();
