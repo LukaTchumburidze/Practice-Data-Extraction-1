@@ -5,10 +5,6 @@ import java.net.FileNameMap;
 import java.util.*;
 import java.io.*;
 
-import org.apache.bcel.generic.INSTANCEOF;
-import org.apache.poi.hssf.model.Sheet;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.*;
 import sun.misc.FormattedFloatingDecimal;

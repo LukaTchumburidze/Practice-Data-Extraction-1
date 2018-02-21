@@ -1,11 +1,11 @@
 package com.firstpractice.global;
 
-import com.thoughtworks.selenium.SeleniumException;
 import javafx.scene.chart.PieChart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,10 +44,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         //Sets variable to local chromedriver's path
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        System.setProperty("webdriver.gecko.driver", "geckodriver");
 
         //Initialise new chromedriver and wait
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 10);
 
         driver.navigate().to(Variables.InitLink);
